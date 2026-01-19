@@ -95,28 +95,6 @@ Detailed order and backlog plots for all scenarios are provided in the appendix 
 
 ---
 
-## Repository Structure
-.
-├── report/
-│ ├── main.tex # Full LaTeX case study report
-│ ├── references.bib # Bibliography
-│ └── figures/ # Figures used in the report
-│
-├── simulations/
-│ ├── robot_simulation/ # Rule-based Beer Game implementation
-│ └── llm_simulation/ # LLM-based Beer Game implementation
-│
-├── data/
-│ ├── demand_pattern.xlsx # Customer demand data
-│ └── simulation_results/ # Output data and plots
-│
-├── appendix/
-│ ├── additional_figures/ # Supplementary plots
-│ └── code_snippets/ # Supporting code
-│
-└── README.md
-
----
 
 ## Reproducibility
 The simulation methodology is fully deterministic given the specified demand pattern and initial conditions. Robot-based simulations are fully reproducible. LLM-based simulations use controlled sampling parameters but may exhibit minor variability due to stochastic text generation.
