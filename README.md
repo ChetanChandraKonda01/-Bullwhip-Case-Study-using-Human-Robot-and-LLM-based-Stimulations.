@@ -155,7 +155,7 @@ If you use or reference this work, please cite it as follows:
 ## 🙏 Acknowledgements:
 Special thanks to Prof. Dr. Tim Weber for continuous academic guidance and to the laboratory staff at Technische Hochschule Deggendorf for technical and infrastructural support.
 
-##📬 Contact:
+## 📬 Contact:
 For questions, collaboration, or extensions:
 📧 Chetan.konda@stud.th-deg.de
 🏫 Technische Hochschule Deggendorf
