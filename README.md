@@ -98,7 +98,7 @@ The following scenarios are evaluated for all decision-maker types:
   - Result plots for human, robot, and LLM simulations
 
 README.txt
-references.bib
+
 
 
 --------------------------------------------------
