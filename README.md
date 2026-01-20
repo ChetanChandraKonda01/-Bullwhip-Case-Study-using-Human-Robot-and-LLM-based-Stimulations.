@@ -4,7 +4,7 @@
 📍 **Case Study – Intelligent Systems in Production**  
 🎓 **Technische Hochschule Deggendorf (THD)**  
 👨‍🏫 Supervisor: *Prof. Dr. Tim Weber*  
-📅 January 2026  
+ January 2026  
 
 ---
 
