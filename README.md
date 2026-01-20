@@ -108,7 +108,7 @@ Four operational scenarios are evaluated for **each decision-maker type**:
 - Qualitative stability analysis  
 - Conceptual variance-based bullwhip quantification:
 
-'''text
+text
 B_i = Var(O_i) / Var(D)
 Where:
 Var(O_i) = variance of orders at echelon i
