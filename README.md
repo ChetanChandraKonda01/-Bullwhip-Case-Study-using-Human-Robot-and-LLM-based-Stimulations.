@@ -1,208 +1,170 @@
-# Simulation-Based Analysis of the Bullwhip Effect
-
-**Human vs Rule-Based Robot vs LLM-Driven Beer Game Models**
-
----
-
-## 📘 Project Overview
-
-This repository contains the implementation and experimental setup for a **simulation-based case study** analyzing the **bullwhip effect** in a four-echelon supply chain using the classical **Beer Game** framework.
-
-The study systematically compares three decision-making paradigms under identical demand and structural conditions:
-
-* **Human decision-makers**
-* **Rule-based (robot) agents**
-* **Large Language Model (LLM)-driven agents**
-
-The objective is to evaluate how **behavioral decision-making, automation, and AI-based reasoning** influence demand amplification, backlog propagation, and system stability under different coordination mechanisms.
-
-The project supports reproducible experimentation and serves both **research** and **educational** purposes in supply chain dynamics and intelligent systems.
-
----
-
-## 🧠 Case Study Design
-
-### Supply Chain Structure
-
-The simulated supply chain consists of four sequential echelons:
-
-1. Retailer
-2. Wholesaler
-3. Distributor
-4. Factory
-
-Each echelon operates with:
-
-* Local inventory
-* Backlog tracking
-* Shipment pipelines with configurable lead times
-* Decentralized decision-making
-
-A **fixed 15-week horizon** and a **predefined demand shock pattern** are used across all experiments to ensure comparability .
-
----
-
-## ⚙️ Decision-Maker Models
-
-### 1. Human-Based Simulation
-
-* Real participants manually place weekly orders
-* Decisions are based solely on local information
-* No visibility of future demand
-* Captures behavioral bias, overreaction, and delayed reasoning
-
-### 2. Robot-Based Simulation
-
-* Deterministic, rule-based inventory control
-* Orders computed using a base-stock (target inventory) policy
-* Serves as a **stability benchmark**
-* Free from behavioral bias
-
-### 3. LLM-Based Simulation
-
-* Human roles replaced by a **Large Language Model agent**
-* Receives only local state variables (inventory, backlog, incoming shipment)
-* Uses a structured prompt to emulate **bounded rational human behavior**
-* No learning or memory across weeks (static reasoning)
-
----
-
-## 🔄 Operational Scenarios
-
-Each decision-maker type is evaluated under four coordination scenarios:
-
-| Scenario                   | Shipping Delay | Information Sharing |
-| -------------------------- | -------------- | ------------------- |
-| Baseline                   | Enabled        | No                  |
-| Information Sharing        | Enabled        | Yes                 |
-| Lean                       | Disabled       | No                  |
-| Lean + Information Sharing | Disabled       | Yes                 |
-
-These scenarios isolate the effects of **physical lead times** and **information delays** on system stability.
-
----
-
-## 🔁 Weekly Simulation Logic
-
-Each simulation week follows the same execution cycle:
-
-1. Receive incoming shipments
-2. Fulfill observed demand and backlog
-3. Update inventory and backlog states
-4. Generate order decisions
-5. Push orders into the shipment pipeline
-6. Log system states for analysis
-
-This identical execution logic ensures **fair and controlled comparison** across all models .
-
----
-
-## 📊 Outputs and Analysis
-
-The simulation generates:
-
-* Weekly order quantities per echelon
-* Inventory levels
-* Backlog dynamics
-
-Results are exported as **Excel files** and visualized using line plots to analyze:
-
-* Demand amplification
-* Phase lag across echelons
-* Stability and recovery behavior
-
-The bullwhip effect is evaluated using **variance-based metrics**, consistent with established supply chain literature.
-
----
-
-## 🛠️ Requirements
-
-### Software
-
-* Python 3.9+
-* pip
-
-### Python Libraries
-
-```bash
-pandas
-numpy
-matplotlib
-transformers
-torch
-accelerate
-```
-
-### Hardware (for LLM Simulation)
-
-* GPU recommended (CUDA-enabled)
-* Minimum 12 GB VRAM for Mistral-7B inference
-
----
-
-## ▶️ How to Run the Project
-
-1. **Clone the repository**
-
-```bash
-git clone <repository-url>
-cd bullwhip-beer-game
-```
-
-2. **Install dependencies**
-
-```bash
-pip install -r requirements.txt
-```
-
-3. **Run robot-based simulations**
-
-```bash
-python robot_beer_game.py
-```
-
-4. **Run LLM-based simulations**
-
-```bash
-python llm_beer_game.py
-```
-
-5. **Analyze outputs**
-
-* Excel files are generated per scenario
-* Plots can be regenerated using provided analysis scripts
-
----
-
-## 🎯 Key Insight
-
-This case study demonstrates that the **bullwhip effect is fundamentally a system-level problem**.
-While human behavior amplifies instability, **structural coordination mechanisms** (lean design and information sharing) dominate outcomes—often making even boundedly rational decisions appear effective.
-
----
-
-## 📄 Reference
-
-This repository accompanies the academic case study report:
-*Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models* 
-
----
-
-## 👥 Authors
-
-* **Chetan Chandra Konda**
-* **Doddapaneni Mohith**
-* **Technische Hochschule Deggendorf, Germany**
-
----
-
-## 📜 License
-
-This project is intended for **academic and educational use**.
-Please cite the associated report if you use or extend this work.
-
----
-
-
-
+Simulation-Based Study of the Bullwhip Effect
+============================================
+
+Project Title:
+--------------
+Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, 
+and LLM-Driven Beer Game Models
+
+Course:
+-------
+Case Study – Intelligent Systems in Production
+
+Supervisor:
+-----------
+Prof. Dr. Tim Weber
+
+Authors:
+--------
+Doddapaneni Mohith (Matriculation No: 12503701)
+Chetan Chandra Konda (Matriculation No: 12504278)
+
+Institution:
+------------
+Technische Hochschule Deggendorf
+
+Date:
+-----
+20 January 2026
+
+
+--------------------------------------------------
+1. Project Overview
+--------------------------------------------------
+This project investigates the bullwhip effect in a four-echelon supply chain
+using the classical Beer Game framework. The study compares three different
+decision-making paradigms:
+
+1. Human-based decision-making
+2. Rule-based robot (algorithmic) decision-making
+3. Large Language Model (LLM)-driven decision-making
+
+All simulations are conducted under identical demand conditions and across
+multiple operational scenarios to analyze demand amplification, backlog
+propagation, and system stability.
+
+
+--------------------------------------------------
+2. Objectives
+--------------------------------------------------
+- To analyze how the bullwhip effect emerges in supply chains
+- To compare behavioral, algorithmic, and AI-based decision-makers
+- To study the impact of coordination mechanisms such as:
+  - Information sharing
+  - Lean (reduced lead time) operations
+- To evaluate how system design influences supply chain stability
+
+
+--------------------------------------------------
+3. Operational Scenarios
+--------------------------------------------------
+The following scenarios are evaluated for all decision-maker types:
+
+1. Baseline Beer Game
+   - Shipping delay present
+   - No information sharing
+
+2. Information Sharing
+   - Shipping delay present
+   - Order information shared upstream
+
+3. Lean Scenario
+   - Shipping delay removed
+   - No information sharing
+
+4. Lean + Information Sharing
+   - Shipping delay removed
+   - Order information shared
+
+
+--------------------------------------------------
+4. Repository Structure
+--------------------------------------------------
+/report/
+  - Final LaTeX source (.tex)
+  - Compiled PDF report
+
+/code/
+  - Robot-based Beer Game simulation (Python)
+  - LLM-based Beer Game simulation (Python)
+
+/results/
+  - Generated Excel files for each scenario
+  - Order and backlog plots
+
+/images/
+  - Demand pattern
+  - Beer Game architecture
+  - Result plots for human, robot, and LLM simulations
+
+README.txt
+references.bib
+
+
+--------------------------------------------------
+5. Simulation Implementation
+--------------------------------------------------
+- Simulation Horizon: 15 weeks
+- Supply Chain Stages:
+  - Retailer
+  - Wholesaler
+  - Distributor
+  - Factory
+
+Robot-Based Simulation:
+-----------------------
+Uses a base-stock inventory control policy with fixed target inventory levels.
+Orders are computed deterministically based on inventory position.
+
+LLM-Based Simulation:
+---------------------
+Uses a Mistral-7B-Instruct model acting as a boundedly rational agent.
+The LLM receives only local state information and does not learn across weeks.
+
+
+--------------------------------------------------
+6. Key Findings
+--------------------------------------------------
+- The bullwhip effect is primarily driven by system-level delays
+- Human decision-makers amplify instability through overreaction
+- Robot-based agents produce the most stable behavior
+- LLM-based agents consistently outperform humans but do not fully
+  match robot performance
+- Combined lean and information-sharing scenarios minimize demand amplification
+
+
+--------------------------------------------------
+7. Tools and Technologies
+--------------------------------------------------
+- Python 3
+- Pandas
+- Matplotlib
+- Transformers (Hugging Face)
+- Mistral-7B-Instruct
+- LaTeX (report preparation)
+
+
+--------------------------------------------------
+8. How to Run the Simulations
+--------------------------------------------------
+1. Install required Python dependencies
+2. Run the robot-based simulation script
+3. Run the LLM-based simulation script in a GPU-enabled environment
+4. Generated Excel files will be saved automatically
+
+
+--------------------------------------------------
+9. Notes
+--------------------------------------------------
+- The Beer Game model is a simplified representation of real supply chains
+- Cost-based performance metrics are not included
+- Results focus on order and backlog dynamics
+
+
+--------------------------------------------------
+10. Acknowledgements
+--------------------------------------------------
+The authors sincerely thank Prof. Dr. Tim Weber for his guidance and feedback
+throughout the project. Special thanks to Mr. René Höhle and the laboratory
+staff at Technische Hochschule Deggendorf for their technical support.
 
