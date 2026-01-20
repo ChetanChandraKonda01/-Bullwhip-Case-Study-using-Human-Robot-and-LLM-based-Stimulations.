@@ -190,7 +190,7 @@ This repository accompanies the academic case study report:
 
 ## 👥 Authors
 
-* **Chetan Reddy Konda**
+* **Chetan Chandra Konda**
 * **Doddapaneni Mohith**
   Technische Hochschule Deggendorf, Germany
 
@@ -203,13 +203,6 @@ Please cite the associated report if you use or extend this work.
 
 ---
 
-If you want, I can next:
 
-* Add **badges** (Python, License, GPU)
-* Convert this to **IEEE reproducibility README style**
-* Create a **requirements.txt**
-* Generate a **repository folder structure diagram**
-
-Just tell me.
 
 
