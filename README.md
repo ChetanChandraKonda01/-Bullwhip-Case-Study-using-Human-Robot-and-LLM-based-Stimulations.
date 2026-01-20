@@ -192,7 +192,7 @@ This repository accompanies the academic case study report:
 
 * **Chetan Chandra Konda**
 * **Doddapaneni Mohith**
-  Technische Hochschule Deggendorf, Germany
+* **Technische Hochschule Deggendorf, Germany**
 
 ---
 
