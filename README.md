@@ -108,13 +108,20 @@ Four operational scenarios are evaluated for **each decision-maker type**:
 - Qualitative stability analysis  
 - Conceptual variance-based bullwhip quantification:
 
-text
-B_i = Var(O_i) / Var(D)
-Where:
-Var(O_i) = variance of orders at echelon i
-Var(D) = variance of customer demand
+---
 
-🛠️ Technologies Used
+## 📈 Bullwhip Effect Quantification
+
+The bullwhip effect is quantified using a **variance ratio metric**, which compares order variability at each echelon to customer demand variability:
+
+B_i = Var(O_i) / Var(D)```
+
+Where:
+Var(Oᵢ) = Variance of orders placed at echelon i
+Var(D) = Variance of customer demand
+A value of Bᵢ > 1 indicates demand amplification, with larger values representing a stronger bullwhip effect.
+
+## 🛠️ Technologies Used:
 Python
 Pandas / NumPy
 Matplotlib
@@ -122,31 +129,33 @@ Hugging Face Transformers
 Mistral-7B-Instruct
 System Dynamics modeling
 
-👥 Authors & Contributions
-Name	Contribution
-Doddapaneni Mohith	Conceptualization, modeling, literature review, analysis, report writing
-Chetan Reddy Konda	Simulation implementation, data generation, visualization, validation
-📚 Academic Context
+##v👥 Authors & Contributions:
+| Name                   | Contribution                                                                                                                           |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Doddapaneni Mohith** | Conceptualization, Beer Game modeling, scenario definition, literature review, analysis, interpretation of results, and report writing |
+| **Chetan Reddy Konda** | Simulation implementation (human, robot, and LLM), data generation, visualization, validation, and technical support                   |
+
+## 📚 Academic Context:
 This work builds upon foundational research in:
 System Dynamics
 Supply Chain Coordination
 Behavioral Operations Management
 Digital and AI-driven supply chains
-The Beer Game is used as a controlled experimental platform to compare human, algorithmic, and LLM-based decision-making.
+The Beer Game is employed as a controlled experimental platform to systematically compare human, rule-based, and LLM-based decision-making under identical structural conditions.
 
-📌 Citation
-If you use this work, please cite:
-
+## 📌 Citation:
+If you use or reference this work, please cite it as follows:
 @techreport{bullwhip2026,
-  title   = {Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models},
-  author  = {Doddapaneni Mohith and Chetan Reddy Konda},
-  year    = {2026},
+  title       = {Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models},
+  author      = {Doddapaneni Mohith and Chetan Reddy Konda},
+  year        = {2026},
   institution = {Technische Hochschule Deggendorf}
 }
 
-🙏 Acknowledgements
-Special thanks to Prof. Dr. Tim Weber for continuous guidance and to the laboratory staff at Technische Hochschule Deggendorf for technical support.
-📬 Contact
+## 🙏 Acknowledgements:
+Special thanks to Prof. Dr. Tim Weber for continuous academic guidance and to the laboratory staff at Technische Hochschule Deggendorf for technical and infrastructural support.
+
+##📬 Contact:
 For questions, collaboration, or extensions:
 📧 Chetan.konda@stud.th-deg.de
 🏫 Technische Hochschule Deggendorf
