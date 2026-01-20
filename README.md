@@ -1,161 +1,215 @@
-# 🟦 Simulation-Based Study of the Bullwhip Effect  
-### Human, Rule-Based Robot, and LLM-Driven Beer Game Models
+# Simulation-Based Analysis of the Bullwhip Effect
 
-📍 **Case Study – Intelligent Systems in Production**  
-🎓 **Technische Hochschule Deggendorf (THD)**  
-👨‍🏫 Supervisor: *Prof. Dr. Tim Weber*  
- January 2026  
+**Human vs Rule-Based Robot vs LLM-Driven Beer Game Models**
 
 ---
 
-## 📘 Overview
+## 📘 Project Overview
 
-This repository contains the complete materials for the case study:
+This repository contains the implementation and experimental setup for a **simulation-based case study** analyzing the **bullwhip effect** in a four-echelon supply chain using the classical **Beer Game** framework.
 
-**“Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models.”**
+The study systematically compares three decision-making paradigms under identical demand and structural conditions:
 
-The study investigates how **decision-making behavior** and **system design** influence the **bullwhip effect** in a four-echelon supply chain using the classical **Beer Game** framework.
+* **Human decision-makers**
+* **Rule-based (robot) agents**
+* **Large Language Model (LLM)-driven agents**
 
-Three decision-maker types are systematically compared under identical demand conditions:
+The objective is to evaluate how **behavioral decision-making, automation, and AI-based reasoning** influence demand amplification, backlog propagation, and system stability under different coordination mechanisms.
 
-- 🧑 Human participants  
-- 🤖 Rule-based robotic agents  
-- 🧠 Large Language Model (LLM) agents  
-
-All experiments are conducted over a fixed 15-week horizon to ensure reproducibility and comparability.
+The project supports reproducible experimentation and serves both **research** and **educational** purposes in supply chain dynamics and intelligent systems.
 
 ---
 
-## 🎯 Research Objectives
+## 🧠 Case Study Design
 
-- Analyze how the **bullwhip effect differs** across human, robot, and LLM decision-makers  
-- Isolate the impact of **information delay** and **shipping delay**  
-- Evaluate whether **LLM-based agents outperform humans** under bounded rationality  
-- Demonstrate that the bullwhip effect is primarily a **system-level phenomenon**
+### Supply Chain Structure
 
----
+The simulated supply chain consists of four sequential echelons:
 
-## 🏗️ Beer Game Structure
+1. Retailer
+2. Wholesaler
+3. Distributor
+4. Factory
 
-The Beer Game models a **four-stage supply chain**:
+Each echelon operates with:
 
-1. Retailer  
-2. Wholesaler  
-3. Distributor  
-4. Factory  
+* Local inventory
+* Backlog tracking
+* Shipment pipelines with configurable lead times
+* Decentralized decision-making
 
-Each stage operates with:
-- Local inventory
-- Backlog
-- Incoming orders
-- Shipment and information delays  
-
-A predefined demand shock is applied consistently across all simulations.
+A **fixed 15-week horizon** and a **predefined demand shock pattern** are used across all experiments to ensure comparability .
 
 ---
 
-## ⚙️ Experimental Scenarios
+## ⚙️ Decision-Maker Models
 
-Four operational scenarios are evaluated for **each decision-maker type**:
+### 1. Human-Based Simulation
 
-| Scenario | Shipping Delay | Information Sharing | Description |
-|--------|---------------|--------------------|------------|
-| Baseline | Yes | No | Classical Beer Game |
-| Information Sharing | Yes | Yes | Orders visible upstream |
-| Lean | No | No | Physical delays removed |
-| Lean + Information Sharing | No | Yes | Fully coordinated system |
+* Real participants manually place weekly orders
+* Decisions are based solely on local information
+* No visibility of future demand
+* Captures behavioral bias, overreaction, and delayed reasoning
 
----
+### 2. Robot-Based Simulation
 
-## 🧠 Decision-Maker Models
+* Deterministic, rule-based inventory control
+* Orders computed using a base-stock (target inventory) policy
+* Serves as a **stability benchmark**
+* Free from behavioral bias
 
-### 👤 Human-Based Simulation
-- Real human participants
-- Decisions based solely on local information
-- No knowledge of future demand
-- Susceptible to behavioral bias and delayed feedback
+### 3. LLM-Based Simulation
 
-### 🤖 Robot-Based Simulation
-- Deterministic base-stock inventory control policy
-- No behavioral bias
-- Serves as a benchmark for stable supply chain operation
-
-### 🧠 LLM-Based Simulation
-- Mistral-7B-Instruct model (~7B parameters)
-- Bounded rationality via structured prompt
-- No learning or memory across weeks
-- Receives only local state information
+* Human roles replaced by a **Large Language Model agent**
+* Receives only local state variables (inventory, backlog, incoming shipment)
+* Uses a structured prompt to emulate **bounded rational human behavior**
+* No learning or memory across weeks (static reasoning)
 
 ---
 
-## 📊 Key Findings
+## 🔄 Operational Scenarios
 
-- Human players exhibit the **strongest bullwhip effect**, with severe upstream amplification  
-- Robot agents demonstrate **minimal demand amplification**, confirming structural dominance  
-- LLM agents consistently **outperform humans**, showing calmer and more stable ordering  
-- The **Lean + Information Sharing** scenario nearly eliminates the bullwhip effect  
-- **System design matters more than decision-maker intelligence**
+Each decision-maker type is evaluated under four coordination scenarios:
 
-> **Core Insight:**  
-> The bullwhip effect is a system problem first and a behavioral problem second.
+| Scenario                   | Shipping Delay | Information Sharing |
+| -------------------------- | -------------- | ------------------- |
+| Baseline                   | Enabled        | No                  |
+| Information Sharing        | Enabled        | Yes                 |
+| Lean                       | Disabled       | No                  |
+| Lean + Information Sharing | Disabled       | Yes                 |
 
----
-
-## 📈 Evaluation Metrics
-
-- Order dynamics across echelons  
-- Backlog propagation and clearance  
-- Qualitative stability analysis  
-- Conceptual variance-based bullwhip quantification:
+These scenarios isolate the effects of **physical lead times** and **information delays** on system stability.
 
 ---
 
-## 📈 Bullwhip Effect Quantification
+## 🔁 Weekly Simulation Logic
 
-The bullwhip effect is quantified using a **variance ratio metric**, which compares order variability at each echelon to customer demand variability:
+Each simulation week follows the same execution cycle:
 
-B_i = Var(O_i) / Var(D)```
+1. Receive incoming shipments
+2. Fulfill observed demand and backlog
+3. Update inventory and backlog states
+4. Generate order decisions
+5. Push orders into the shipment pipeline
+6. Log system states for analysis
 
-Where:
-Var(Oᵢ) = Variance of orders placed at echelon i
-Var(D) = Variance of customer demand
-A value of Bᵢ > 1 indicates demand amplification, with larger values representing a stronger bullwhip effect.
+This identical execution logic ensures **fair and controlled comparison** across all models .
 
-## 🛠️ Technologies Used:
-Python
-Pandas / NumPy
-Matplotlib
-Hugging Face Transformers
-Mistral-7B-Instruct
-System Dynamics modeling
+---
 
-##v👥 Authors & Contributions:
-| Name                   | Contribution                                                                                                                           |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Doddapaneni Mohith** | Conceptualization, Beer Game modeling, scenario definition, literature review, analysis, interpretation of results, and report writing |
-| **Chetan Reddy Konda** | Simulation implementation (human, robot, and LLM), data generation, visualization, validation, and technical support                   |
+## 📊 Outputs and Analysis
 
-## 📚 Academic Context:
-This work builds upon foundational research in:
-System Dynamics
-Supply Chain Coordination
-Behavioral Operations Management
-Digital and AI-driven supply chains
-The Beer Game is employed as a controlled experimental platform to systematically compare human, rule-based, and LLM-based decision-making under identical structural conditions.
+The simulation generates:
 
-## 📌 Citation:
-If you use or reference this work, please cite it as follows:
-@techreport{bullwhip2026,
-  title       = {Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models},
-  author      = {Doddapaneni Mohith and Chetan Reddy Konda},
-  year        = {2026},
-  institution = {Technische Hochschule Deggendorf}
-}
+* Weekly order quantities per echelon
+* Inventory levels
+* Backlog dynamics
 
-## 🙏 Acknowledgements:
-Special thanks to Prof. Dr. Tim Weber for continuous academic guidance and to the laboratory staff at Technische Hochschule Deggendorf for technical and infrastructural support.
+Results are exported as **Excel files** and visualized using line plots to analyze:
 
-## 📬 Contact:
-For questions, collaboration, or extensions:
-📧 Chetan.konda@stud.th-deg.de
-🏫 Technische Hochschule Deggendorf
+* Demand amplification
+* Phase lag across echelons
+* Stability and recovery behavior
+
+The bullwhip effect is evaluated using **variance-based metrics**, consistent with established supply chain literature.
+
+---
+
+## 🛠️ Requirements
+
+### Software
+
+* Python 3.9+
+* pip
+
+### Python Libraries
+
+```bash
+pandas
+numpy
+matplotlib
+transformers
+torch
+accelerate
+```
+
+### Hardware (for LLM Simulation)
+
+* GPU recommended (CUDA-enabled)
+* Minimum 12 GB VRAM for Mistral-7B inference
+
+---
+
+## ▶️ How to Run the Project
+
+1. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd bullwhip-beer-game
+```
+
+2. **Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run robot-based simulations**
+
+```bash
+python robot_beer_game.py
+```
+
+4. **Run LLM-based simulations**
+
+```bash
+python llm_beer_game.py
+```
+
+5. **Analyze outputs**
+
+* Excel files are generated per scenario
+* Plots can be regenerated using provided analysis scripts
+
+---
+
+## 🎯 Key Insight
+
+This case study demonstrates that the **bullwhip effect is fundamentally a system-level problem**.
+While human behavior amplifies instability, **structural coordination mechanisms** (lean design and information sharing) dominate outcomes—often making even boundedly rational decisions appear effective.
+
+---
+
+## 📄 Reference
+
+This repository accompanies the academic case study report:
+*Simulation-Based Study of the Bullwhip Effect Using Human, Rule-Based Robot, and LLM-Driven Beer Game Models* 
+
+---
+
+## 👥 Authors
+
+* **Chetan Reddy Konda**
+* **Doddapaneni Mohith**
+  Technische Hochschule Deggendorf, Germany
+
+---
+
+## 📜 License
+
+This project is intended for **academic and educational use**.
+Please cite the associated report if you use or extend this work.
+
+---
+
+If you want, I can next:
+
+* Add **badges** (Python, License, GPU)
+* Convert this to **IEEE reproducibility README style**
+* Create a **requirements.txt**
+* Generate a **repository folder structure diagram**
+
+Just tell me.
+
+
